@@ -409,17 +409,25 @@ contract NFTA is ERC721A, Ownable {
         require(os);
     }
 
+    /// @notice it to get track of public mint minted.
+    /// @dev it to get track of public mint minted.
     function getPublicSaleAmount() public view onlyOwner returns (uint256){
     return publicFreeMinted;
     }
+    /// @notice it to get track of pres sale mint minted.
+    /// @dev it to get track of presale mint minted.
     function getPreSaleAmount() public view onlyOwner returns (uint256){
     return whitelistFreeMinted;
     }
-
+    /// @notice it to track addresses that mints and thier amount
+    /// @dev it is added to stop addresses from selling and minting again
+    /// @param wallet is the wallet addr of minter
     function getMintedAmountByWallet(address wallet) public view returns (uint8){
     return mintedList[wallet];
     }
-
+    /// @notice it sets the paid mint amount
+    /// @dev it is to set the cap on paid mint
+    /// @param paidMintLim is the uint256 to set paid mint amount limit
     function setPaidMintLimit(uint256 paidMintLim)
         public
         onlyOwner
